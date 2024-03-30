@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="d-flex flex-wrap">
+    <div class="col-md-4 text-end">
+        <a href="{% static "home/img/me/me.jpg" %}">
+            <img src="{% static "home/img/me/me2.jpg" %}" width="200px" alt="" srcset="">
+        </a>
+    </div>
+    <div class="col ms-3">
+        <div>
+            <h1>Vaibhav's Realm</h1>
+            <p class="fw-light">FUN FACT: It took 3 hours to make this section responsive</p>
+        </div>
+        <div>
+            <p>You are the <a href="{% url "home:path" path="notreally.html" %}"><span id="counter">xxx</span><sup>rd</sup></a> visitor to this page.</p>
+            <script>$('#counter').text(Math.floor(1000 + Math.random() * 9000))</script>
+        </div>
+    </div>
+</div>

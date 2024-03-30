@@ -1,1 +1,12 @@
-{% include "home/base.html" %}
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}Vaibhav's Home{% endblock title %}
+
+{% block body %}
+
+{% include "home/~components/index/me.html" %}
+
+<script src="{% static "home/js/index.js" %}"></script>
+
+{% endblock body %}
