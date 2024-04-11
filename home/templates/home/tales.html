@@ -1,0 +1,121 @@
+{% extends "home/base.html" %}
+
+{% block title %}Tales | Vaibhav{% endblock title %}
+{% block body %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.6.1/fuse.min.js"></script>
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    ul li h6 {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    ul li p {
+        margin-left: 40px;
+        margin-bottom: .5rem;
+    }
+</style>
+
+<h3>Index of Vaibhav's Stories</h3>
+
+<p>Some of these are interesting in their own right, and some others are probably interesting only to people who are directly involved. Oh well. Read at your own risk.</p>
+
+<div class="mb-3">
+    <input type="input"  name="search" id="searchBox" placeholder="Search tales" autocomplete="off">
+    <input type="checkbox" name="advSearch" id="advSearch" class="ms-1" style="transform: scale(1.25);"> <label for="advSearch">Advanced search</label>
+    <p style="font-size: 10px;font-style: italics;">Someday I'll make this searchbar work better</p>
+</div>
+
+<!-- Template of list
+<li>
+    <h6><a href="#">Title</a> <span>[D/M/YY@HH:mm,dddd]</span></h6>
+    <p>Description</p>
+</li>
+-->
+
+<ul id="talesList">
+    <li>
+        <h6><a href="/tales/death-and-afterlife.html">Death, and Afterlife</a> <span>[6/4/24@18:16,Saturday]</span></h6>
+        <p>The story of how I saw my own death, and was traumatized by the experienced.</p>
+    </li>
+    <li>
+        <h6><a href="/tales/chennai-pec-hacks.html">Chennai trip for PEC Hacks</a> <span>[24/1/24-31/1/24]</span></h6>
+        <p>The short trip to Chennai with friends for a hackathon held in Panimalar Engineering College</p>
+    </li>
+    <li>
+        <h6><a href="/tales/ahmedabad-trip-1.html">Ahmedabad trip in summer vacations</a> <span>[7/22-8/22]</span></h6>
+        <p>20 days trip to Ahmedabad, Gujarat before joining college. Fun, work, more fun, more work.</p>
+    </li>
+</ul>
+
+<!-- Add advanced search logic -->
+
+<script>
+    $(document).ready(function() {
+        $('#searchBox').on('input', function() {
+            var searchText = $(this).val().toLowerCase();
+            $('#talesList li').each(function() {
+                var taleTitle = $(this).find('h6 a').text().toLowerCase();
+                var taleTimestamp = $(this).find('h6 span').text().toLowerCase();
+                var taleDescription = $(this).find('p').text().toLowerCase();
+                if (taleTitle.includes(searchText) || taleTimestamp.includes(searchText) || taleDescription.includes(searchText)) {
+                    $(this).removeClass('hidden');
+                } else {
+                    $(this).addClass('hidden');
+                }
+            });
+        });
+    });
+</script>
+
+{% comment %} <script>
+    $(document).ready(function() {
+        var tales = [];
+    
+        // Scraping tales from the HTML list
+        $('#talesList li').each(function(index) {
+            var title = $(this).find('h6 a').text().trim();
+            var timestamp = $(this).find('h6 span').text().trim();
+            var content = $(this).find('p').text().trim();
+            tales.push({
+                title: title,
+                content: content,
+                timestamp: timestamp,
+                refIndex: index // Adding reference index for later use
+            });
+        });
+    
+        var options = {
+            keys: ['title', 'content', 'timestamp']
+        };
+    
+        var fuse = new Fuse(tales, options);
+    
+        $('#searchBox').on('input', function() {
+            var searchText = $(this).val().trim();
+            if (searchText === '') {
+                $('#talesList li').removeClass('hidden');
+                return; // Exit the function early if search text is empty
+            }
+            
+            var results = fuse.search(searchText);
+            
+            $('#talesList li').addClass('hidden');
+            
+            results.forEach(function(result) {
+                $('#talesList li:eq(' + result.refIndex + ')').removeClass('hidden');
+            });
+        });
+    });
+    
+    </script> {% endcomment %}
+
+{% endblock body %}
