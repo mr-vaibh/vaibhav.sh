@@ -1,8 +1,21 @@
+<style>
+    #resume-btn {
+        border: 2px solid transparent;
+        /* https://css-tricks.com/gradient-borders-in-css/ */
+        border-image: 
+        linear-gradient(
+          to bottom, 
+          red, 
+          rgba(0, 0, 0, 0)
+        ) 1 100%;
+    }
+</style>
+
 <div class="border-top border-bottom border-dark text-center mb-3">
-    <a href="{% url "home:index" %}" class="btn m-2">Home</a>
-    <a href="{% url "home:resume" %}" class="btn m-2">Resume</a>
-    <a href="#" class="btn m-2">Journals</a>
-    <a href="#" class="btn m-2">Tales</a>
-    <a href="#" class="btn m-2">Work</a>
-    <a href="#" class="btn m-2">Contact</a>
+    <a href="{% url "home:index" %}" class="btn my-1">Home</a>
+    <a href="{% url "home:resume" %}" class="btn my-1 rounded" id="resume-btn">Resume</a>
+    <a href="#" class="btn my-1">Journals</a>
+    <a href="{% url "home:tales" %}" class="btn my-1">Tales</a>
+    <a href="#" class="btn my-1">Work</a>
+    <a href="#" class="btn my-1">Contact</a>
 </div>
