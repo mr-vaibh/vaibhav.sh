@@ -7,4 +7,39 @@
 
 {% include "home/~components/index/me.html" %}
 
+<style>
+    h6 {
+        font-weight: bold;
+    }
+
+    td {
+        padding: 10px;
+        width: calc(100% / 3);
+    }
+
+    td > div > * {
+        display: block;
+    }
+</style>
+
+<div class="border border-dark mt-5">
+    <table class="w-100">
+        <tr style="vertical-align: top;">
+            <td>
+                <h6>Popular</h6>
+                <div>
+                    <a href="#">Poetries</a>
+                    <a href="https://mrvaibh.medium.com/" target="_blank">Tech articles --Medium</a>
+                </div>
+            </td>
+            <td>
+                <h6>Useless</h6>
+            </td>
+            <td>
+                <h6>Random</h6>
+            </td>
+        </tr>
+    </table>
+</div>
+
 {% endblock body %}
